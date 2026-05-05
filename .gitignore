@@ -1,0 +1,15 @@
+node_modules/
+.expo/
+.toolchain/
+
+*.apk
+*.aab
+
+android/local.properties
+android/.gradle/
+android/app/build/
+android/build/
+
+.idea/
+*.iml
+*.log
