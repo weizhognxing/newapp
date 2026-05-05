@@ -8,7 +8,6 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-  NODE_ENV: production
 
 jobs:
   build-android-fallback:
@@ -44,7 +43,7 @@ jobs:
           echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
 
       - name: Install npm dependencies
-        run: npm ci
+        run: npm ci --include=dev
 
       - name: Prepare local.properties
         run: |
@@ -57,6 +56,8 @@ jobs:
 
       - name: Build release APK
         working-directory: android
+        env:
+          NODE_ENV: production
         run: ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK artifact
