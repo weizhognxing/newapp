@@ -10,13 +10,15 @@ import {
   ActivityIndicator,
   Alert,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import PageHeader from '../../components/PageHeader';
 import EmptyState from '../../components/EmptyState';
 import { historicalPlanningApi } from '../../api/historicalPlanning';
 import { authStore } from '../../store/auth';
-import { BorderRadius, Colors, FontSize, Shadow, Spacing } from '../../constants/theme';
+import { BorderRadius, Colors, FontSize, Gradients, Shadow, Spacing } from '../../constants/theme';
 
 const PAGE_SIZE = 20;
 
@@ -312,7 +314,17 @@ export default function HistoricalPlanningListScreen() {
 
   return (
     <View style={styles.container}>
-      <PageHeader title="选题库" hideBack />
+      <PageHeader title="选题库" subtitle="沉淀可复用的增长选题资产" hideBack />
+      <LinearGradient colors={Gradients.brand} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.libraryHero}>
+        <View style={styles.libraryGlow} />
+        <Text style={styles.heroEyebrow}>TOPIC ASSETS</Text>
+        <Text style={styles.heroTitle}>历史选题资产库</Text>
+        <Text style={styles.heroDesc}>复盘过往规划批次，快速复用高潜选题与内容方向。</Text>
+        <View style={styles.heroStatsRow}>
+          <View style={styles.heroStat}><Text style={styles.heroStatValue}>{total}</Text><Text style={styles.heroStatLabel}>历史批次</Text></View>
+          <View style={styles.heroStat}><Text style={styles.heroStatValue}>{listData.length}</Text><Text style={styles.heroStatLabel}>当前结果</Text></View>
+        </View>
+      </LinearGradient>
       <View style={styles.filterWrap}>
         {/* <View style={styles.modeRow}>
           <TouchableOpacity
@@ -329,6 +341,7 @@ export default function HistoricalPlanningListScreen() {
           </TouchableOpacity>
         </View> */}
         <View style={styles.searchBox}>
+          <Ionicons name="search" size={18} color={Colors.primary} />
           <TextInput
             style={styles.searchInput}
             placeholder={filterMode === 'planning' ? '输入关键字筛选规划批次' : '输入关键字筛选批次内选题'}
@@ -374,10 +387,74 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     paddingTop: Spacing.sm,
   },
-  filterWrap: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
+  libraryHero: {
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.md,
+    borderRadius: BorderRadius.xxl,
+    padding: Spacing.xxl,
+    overflow: 'hidden',
+    ...Shadow.brand,
+  },
+  libraryGlow: {
+    position: 'absolute',
+    right: -44,
+    top: -54,
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    backgroundColor: 'rgba(255,255,255,0.14)',
+  },
+  heroEyebrow: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: FontSize.xs,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+  },
+  heroTitle: {
+    marginTop: Spacing.xs,
+    color: Colors.textInverse,
+    fontSize: FontSize.xxxl,
+    fontWeight: '900',
+  },
+  heroDesc: {
+    marginTop: Spacing.sm,
+    color: 'rgba(255,255,255,0.84)',
+    fontSize: FontSize.sm,
+    lineHeight: 20,
+  },
+  heroStatsRow: {
+    flexDirection: 'row',
     gap: Spacing.sm,
+    marginTop: Spacing.lg,
+  },
+  heroStat: {
+    flex: 1,
+    borderRadius: BorderRadius.lg,
+    backgroundColor: 'rgba(255,255,255,0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.18)',
+    padding: Spacing.sm,
+  },
+  heroStatValue: {
+    color: Colors.textInverse,
+    fontSize: FontSize.xl,
+    fontWeight: '900',
+  },
+  heroStatLabel: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: FontSize.xs,
+    marginTop: 2,
+  },
+  filterWrap: {
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.md,
+    padding: Spacing.md,
+    gap: Spacing.sm,
+    borderRadius: BorderRadius.xl,
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   modeRow: {
     flexDirection: 'row',
@@ -409,11 +486,11 @@ const styles = StyleSheet.create({
   searchBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.md,
+    backgroundColor: Colors.background,
+    borderRadius: BorderRadius.full,
     borderWidth: 1,
-    borderColor: Colors.border,
-    paddingHorizontal: Spacing.sm,
+    borderColor: Colors.borderLight,
+    paddingHorizontal: Spacing.md,
     gap: Spacing.xs,
   },
   searchInput: {
@@ -433,17 +510,17 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     borderWidth: 1,
-    borderColor: Colors.border,
-    padding: Spacing.md,
-    ...Shadow.sm,
+    borderColor: Colors.borderLight,
+    padding: Spacing.lg,
+    ...Shadow.md,
   },
   cardTitle: {
     color: Colors.text,
     fontSize: FontSize.lg,
-    fontWeight: '700',
-    lineHeight: 22,
+    fontWeight: '900',
+    lineHeight: 24,
   },
   sourceText: {
     marginTop: Spacing.xs,
@@ -460,7 +537,7 @@ const styles = StyleSheet.create({
   metaChip: {
     paddingHorizontal: Spacing.sm,
     paddingVertical: 3,
-    borderRadius: BorderRadius.sm,
+    borderRadius: BorderRadius.full,
     backgroundColor: Colors.primaryBg,
     color: Colors.primaryDark,
     fontSize: FontSize.xs,

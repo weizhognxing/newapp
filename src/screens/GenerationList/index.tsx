@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PageHeader from '../../components/PageHeader';
 import ThreadList from '../../components/ThreadList';
-import { Colors, Spacing, FontSize, BorderRadius } from '../../constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Shadow } from '../../constants/theme';
 
 const TABS = [
   { key: 'all', label: '全部', statuses: [], dataSource: 'mixed' as const },
@@ -27,7 +27,7 @@ export default function GenerationListScreen() {
 
   return (
     <View style={styles.container}>
-      <PageHeader title="生成列表" hideBack />
+      <PageHeader title="生成列表" subtitle="追踪 AI 内容生产全流程" hideBack />
 
       <View style={styles.tabBar}>
         {TABS.map((tab) => (
@@ -65,26 +65,31 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     backgroundColor: Colors.surface,
-    paddingHorizontal: Spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.md,
+    marginBottom: Spacing.sm,
+    padding: 4,
+    borderRadius: BorderRadius.full,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   tab: {
     flex: 1,
-    paddingVertical: Spacing.md,
+    paddingVertical: 9,
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
+    borderRadius: BorderRadius.full,
   },
   tabActive: {
-    borderBottomColor: Colors.primary,
+    backgroundColor: Colors.primary,
+    ...Shadow.brand,
   },
   tabText: {
     fontSize: FontSize.md,
     color: Colors.textSecondary,
   },
   tabTextActive: {
-    color: Colors.primary,
-    fontWeight: '600',
+    color: Colors.textInverse,
+    fontWeight: '900',
   },
 });

@@ -9,12 +9,13 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import PageHeader from '../../components/PageHeader';
 import { platformConfigApi } from '../../api/tenants';
 import { companyApi } from '../../api/company';
 import { authStore } from '../../store/auth';
-import { Colors, Spacing, FontSize, BorderRadius, Shadow } from '../../constants/theme';
+import { Colors, Spacing, FontSize, BorderRadius, Gradients, Shadow } from '../../constants/theme';
 
 export default function ConsoleDashboardScreen() {
   const navigation = useNavigation<any>();
@@ -100,6 +101,13 @@ export default function ConsoleDashboardScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); loadData(); }} colors={[Colors.primary]} />
         }
       >
+        <LinearGradient colors={Gradients.brand} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.dashboardHero}>
+          <View style={styles.dashboardGlow} />
+          <Text style={styles.heroEyebrow}>PLATFORM INSIGHT</Text>
+          <Text style={styles.heroTitle}>增长数据驾驶舱</Text>
+          <Text style={styles.heroDesc}>实时掌握公司、用户、设备与内容资产的运营状态。</Text>
+        </LinearGradient>
+
         {/* 统计卡片 */}
         <View style={styles.statsGrid}>
           {statCards.map((stat, index) => (
@@ -177,7 +185,41 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   scrollView: { flex: 1 },
-  scrollContent: { padding: Spacing.lg, paddingBottom: 100 },
+  scrollContent: { padding: Spacing.lg, paddingBottom: 110 },
+  dashboardHero: {
+    borderRadius: BorderRadius.xxl,
+    padding: Spacing.xxl,
+    marginBottom: Spacing.lg,
+    overflow: 'hidden',
+    ...Shadow.brand,
+  },
+  dashboardGlow: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    right: -48,
+    top: -64,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
+  heroEyebrow: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: FontSize.xs,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+  },
+  heroTitle: {
+    color: Colors.textInverse,
+    fontSize: FontSize.xxxl,
+    fontWeight: '900',
+    marginTop: Spacing.xs,
+  },
+  heroDesc: {
+    color: 'rgba(255,255,255,0.84)',
+    fontSize: FontSize.sm,
+    lineHeight: 20,
+    marginTop: Spacing.sm,
+  },
   restoreBtn: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -192,39 +234,49 @@ const styles = StyleSheet.create({
   statCard: {
     flex: 1,
     minWidth: '45%',
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.72)',
+    ...Shadow.md,
   },
-  statValue: { fontSize: FontSize.xxxl, fontWeight: '700', marginTop: Spacing.sm },
+  statValue: { fontSize: FontSize.xxxl, fontWeight: '900', marginTop: Spacing.sm },
   statLabel: { fontSize: FontSize.sm, color: Colors.textSecondary, marginTop: Spacing.xs },
   section: {
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     marginBottom: Spacing.lg,
-    ...Shadow.sm,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
-  sectionTitle: { fontSize: FontSize.lg, fontWeight: '600', color: Colors.text, marginBottom: Spacing.lg },
+  sectionTitle: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.text, marginBottom: Spacing.lg },
   quickActions: { flexDirection: 'row', justifyContent: 'space-around' },
-  quickAction: { alignItems: 'center' },
+  quickAction: { alignItems: 'center', flex: 1 },
   quickActionIcon: {
     width: 52,
     height: 52,
     borderRadius: 26,
     backgroundColor: Colors.primaryBg,
+    borderWidth: 1,
+    borderColor: Colors.primarySoft,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: Spacing.sm,
   },
-  quickActionLabel: { fontSize: FontSize.sm, color: Colors.text },
+  quickActionLabel: { fontSize: FontSize.sm, color: Colors.text, fontWeight: '700' },
   companyCard: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: Spacing.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.borderLight,
+    padding: Spacing.md,
+    marginBottom: Spacing.sm,
+    borderRadius: BorderRadius.lg,
+    backgroundColor: Colors.background,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
   },
   companyLeft: { flexDirection: 'row', alignItems: 'center', flex: 1 },
   companyAvatar: {
@@ -232,12 +284,14 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     backgroundColor: Colors.primaryBg,
+    borderWidth: 1,
+    borderColor: Colors.primarySoft,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: Spacing.md,
   },
-  companyAvatarText: { fontSize: FontSize.lg, fontWeight: '700', color: Colors.primary },
+  companyAvatarText: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.primary },
   companyInfo: { flex: 1 },
-  companyName: { fontSize: FontSize.md, fontWeight: '600', color: Colors.text },
+  companyName: { fontSize: FontSize.md, fontWeight: '900', color: Colors.text },
   companyIndustry: { fontSize: FontSize.sm, color: Colors.textSecondary, marginTop: 2 },
 });

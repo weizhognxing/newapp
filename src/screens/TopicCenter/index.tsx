@@ -15,12 +15,13 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import PageHeader from '../../components/PageHeader';
 import EmptyState from '../../components/EmptyState';
 import BottomActionBar from '../../components/BottomActionBar';
 import { topicsApi, HotTopic } from '../../api/topics';
 import { divergenceStreamStore } from '../../store/divergenceStream';
-import { BorderRadius, Colors, FontSize, Shadow, Spacing } from '../../constants/theme';
+import { BorderRadius, Colors, FontSize, Gradients, Shadow, Spacing } from '../../constants/theme';
 import { PLATFORM_SOURCES, SOURCE_LABELS, TRACK_LABELS, TRACKS } from '../../constants/config';
 
 const PAGE_SIZE = 16;
@@ -164,8 +165,21 @@ export default function TopicCenterScreen() {
     <View style={styles.container}>
       <PageHeader
         title="热点筛选"
+        subtitle="发现值得传播的增长机会"
         hideBack
       />
+
+      <LinearGradient colors={Gradients.brand} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.heroCard}>
+        <View style={styles.heroGlow} />
+        <Text style={styles.heroEyebrow}>HOTSPOT RADAR</Text>
+        <Text style={styles.heroTitle}>营销热点雷达</Text>
+        <Text style={styles.heroSubtitle}>从全网热点中筛选高转化选题，快速进入 AI 发散与内容生成。</Text>
+        <View style={styles.heroMetrics}>
+          <View style={styles.heroMetric}><Text style={styles.heroMetricValue}>{topics.length}</Text><Text style={styles.heroMetricLabel}>当前热点</Text></View>
+          <View style={styles.heroMetric}><Text style={styles.heroMetricValue}>{selectedTopics.length}</Text><Text style={styles.heroMetricLabel}>已选题材</Text></View>
+          <View style={styles.heroMetric}><Text style={styles.heroMetricValue}>{currentPlatform === 'all' ? '全域' : SOURCE_LABELS[currentPlatform] || currentPlatform}</Text><Text style={styles.heroMetricLabel}>平台视角</Text></View>
+        </View>
+      </LinearGradient>
 
       {streamState.isStreaming ? (
         <View style={styles.streamHintWrap}>
@@ -241,7 +255,7 @@ export default function TopicCenterScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[Colors.primary]} />}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.35}
-        contentContainerStyle={{ paddingBottom: ACTION_BAR_HEIGHT + tabBarHeight + Spacing.xxxl, paddingTop: Spacing.xs }}
+        contentContainerStyle={{ paddingBottom: ACTION_BAR_HEIGHT + tabBarHeight + Spacing.xxxl, paddingTop: Spacing.md }}
         ListEmptyComponent={
           !loading ? <EmptyState icon="newspaper-outline" title="暂无热点" message="可以换个筛选条件，或稍后刷新再试。" /> : null
         }
@@ -284,14 +298,75 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
+  heroCard: {
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.md,
+    marginBottom: Spacing.md,
+    borderRadius: BorderRadius.xxl,
+    padding: Spacing.xxl,
+    overflow: 'hidden',
+    ...Shadow.brand,
+  },
+  heroGlow: {
+    position: 'absolute',
+    right: -36,
+    top: -46,
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: 'rgba(255,255,255,0.16)',
+  },
+  heroEyebrow: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: FontSize.xs,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+    marginBottom: Spacing.xs,
+  },
+  heroTitle: {
+    color: Colors.textInverse,
+    fontSize: FontSize.xxxl,
+    fontWeight: '900',
+  },
+  heroSubtitle: {
+    color: 'rgba(255,255,255,0.84)',
+    fontSize: FontSize.sm,
+    lineHeight: 20,
+    marginTop: Spacing.sm,
+  },
+  heroMetrics: {
+    flexDirection: 'row',
+    gap: Spacing.sm,
+    marginTop: Spacing.lg,
+  },
+  heroMetric: {
+    flex: 1,
+    borderRadius: BorderRadius.lg,
+    paddingVertical: Spacing.sm,
+    paddingHorizontal: Spacing.sm,
+    backgroundColor: 'rgba(255,255,255,0.14)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.18)',
+  },
+  heroMetricValue: {
+    color: Colors.textInverse,
+    fontSize: FontSize.lg,
+    fontWeight: '900',
+  },
+  heroMetricLabel: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: FontSize.xs,
+    marginTop: 2,
+  },
   toolbarShell: {
-    paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
-    paddingBottom: Spacing.sm,
+    marginHorizontal: Spacing.lg,
+    marginBottom: Spacing.sm,
+    padding: Spacing.md,
     backgroundColor: Colors.surface,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-    ...Shadow.sm,
+    borderRadius: BorderRadius.xl,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   streamHintWrap: {
     paddingHorizontal: Spacing.lg,
@@ -301,10 +376,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.sm,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.xl,
     borderWidth: 1,
-    borderColor: '#bae6fd',
-    backgroundColor: '#e0f2fe',
+    borderColor: Colors.primarySoft,
+    backgroundColor: Colors.primaryBg,
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
   },
@@ -339,10 +414,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.background,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.full,
     borderWidth: 1,
-    borderColor: Colors.border,
-    paddingHorizontal: Spacing.sm,
+    borderColor: Colors.borderLight,
+    paddingHorizontal: Spacing.md,
   },
   searchInput: {
     flex: 1,
@@ -356,14 +431,14 @@ const styles = StyleSheet.create({
   },
   chip: {
     paddingHorizontal: Spacing.md,
-    paddingVertical: 6,
+    paddingVertical: 8,
     borderRadius: BorderRadius.full,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.surface,
     borderWidth: 1,
-    borderColor: Colors.border,
+    borderColor: Colors.borderLight,
   },
   chipActive: {
-    backgroundColor: Colors.primaryBg,
+    backgroundColor: Colors.primary,
     borderColor: Colors.primary,
   },
   chipText: {
@@ -371,22 +446,24 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
   },
   chipTextActive: {
-    color: Colors.primary,
-    fontWeight: '600',
+    color: Colors.textInverse,
+    fontWeight: '800',
   },
   card: {
     marginHorizontal: Spacing.lg,
-    marginTop: Spacing.sm,
+    marginTop: Spacing.md,
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     borderWidth: 1,
-    borderColor: Colors.border,
-    padding: Spacing.md,
-    ...Shadow.sm,
+    borderColor: Colors.borderLight,
+    padding: Spacing.lg,
+    ...Shadow.md,
   },
   cardSelected: {
-    backgroundColor: Colors.primaryBg,
+    backgroundColor: '#f8fbff',
     borderColor: Colors.primary,
+    shadowColor: Colors.primary,
+    shadowOpacity: 0.16,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -420,14 +497,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: FontSize.lg,
-    fontWeight: '700',
+    fontWeight: '900',
     color: Colors.text,
-    lineHeight: 22,
+    lineHeight: 24,
   },
   content: {
-    marginTop: Spacing.xs,
+    marginTop: Spacing.sm,
     color: Colors.textSecondary,
-    lineHeight: 18,
+    lineHeight: 20,
   },
   footerLoader: {
     paddingVertical: Spacing.xl,

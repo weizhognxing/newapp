@@ -154,7 +154,7 @@ export default function MaterialManageScreen() {
     <View style={styles.container}>
       <PageHeader
         title="素材管理"
-        subtitle="事实包"
+        subtitle="沉淀品牌素材与事实知识"
         rightAction={{ icon: 'add-circle-outline', onPress: () => setShowAddModal(true) }}
       />
 
@@ -249,45 +249,45 @@ const styles = StyleSheet.create({
   batchDeleteText: { fontSize: FontSize.md, color: Colors.danger, fontWeight: '500' },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     marginBottom: Spacing.md,
     borderWidth: 1,
     borderColor: Colors.border,
-    ...Shadow.sm,
+    ...Shadow.md,
   },
   cardSelected: { borderColor: Colors.primary, backgroundColor: Colors.primaryBg },
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Spacing.sm },
   cardLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, gap: Spacing.sm },
-  cardTitle: { fontSize: FontSize.lg, fontWeight: '600', color: Colors.text, flex: 1 },
-  categoryBadge: { backgroundColor: Colors.infoBg, borderRadius: BorderRadius.sm, paddingHorizontal: Spacing.sm, paddingVertical: 2 },
+  cardTitle: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.text, flex: 1 },
+  categoryBadge: { backgroundColor: Colors.infoBg, borderRadius: BorderRadius.full, paddingHorizontal: Spacing.sm, paddingVertical: 4 },
   categoryText: { fontSize: FontSize.xs, color: Colors.info },
   cardContent: { fontSize: FontSize.md, color: Colors.textSecondary, lineHeight: 20, marginBottom: Spacing.sm },
   cardDate: { fontSize: FontSize.xs, color: Colors.textTertiary },
   modalOverlay: { flex: 1, backgroundColor: Colors.overlay, justifyContent: 'flex-end' },
-  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xl, borderTopRightRadius: BorderRadius.xl, maxHeight: '85%' },
+  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xxl, borderTopRightRadius: BorderRadius.xxl, maxHeight: '85%' },
   modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: Spacing.lg, borderBottomWidth: 1, borderBottomColor: Colors.border },
-  modalTitle: { fontSize: FontSize.xl, fontWeight: '600', color: Colors.text },
+  modalTitle: { fontSize: FontSize.xl, fontWeight: '900', color: Colors.text },
   modalBody: { padding: Spacing.lg },
   fieldLabel: { fontSize: FontSize.md, fontWeight: '500', color: Colors.text, marginBottom: Spacing.sm, marginTop: Spacing.md },
   fieldInput: {
     backgroundColor: Colors.background,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    borderColor: Colors.border,
+    borderColor: Colors.borderLight,
     paddingHorizontal: Spacing.md,
-    height: 44,
+    height: 48,
     fontSize: FontSize.md,
     color: Colors.text,
   },
   textArea: { height: 120, paddingTop: Spacing.md },
   submitButton: {
     backgroundColor: Colors.primary,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.full,
     paddingVertical: Spacing.md,
     alignItems: 'center',
     marginTop: Spacing.xxl,
     marginBottom: Spacing.xxxl,
   },
-  submitButtonText: { fontSize: FontSize.lg, fontWeight: '600', color: '#fff' },
+  submitButtonText: { fontSize: FontSize.lg, fontWeight: '800', color: '#fff' },
 });

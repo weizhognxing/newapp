@@ -187,7 +187,7 @@ export default function PublishListScreen() {
 
   return (
     <View style={styles.container}>
-      <PageHeader title="发布列表" hideBack />
+      <PageHeader title="发布列表" subtitle="监控多平台分发效果" hideBack />
 
       <View style={styles.tabBar}>
         {TABS.map((tab) => (
@@ -230,31 +230,37 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     backgroundColor: Colors.surface,
-    paddingHorizontal: Spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
+    marginHorizontal: Spacing.lg,
+    marginTop: Spacing.md,
+    marginBottom: Spacing.sm,
+    padding: 4,
+    borderRadius: BorderRadius.full,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   tab: {
     flex: 1,
-    paddingVertical: Spacing.md,
+    paddingVertical: 9,
     alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
+    borderRadius: BorderRadius.full,
   },
   tabActive: {
-    borderBottomColor: Colors.primary,
+    backgroundColor: Colors.primary,
+    ...Shadow.brand,
   },
   tabText: {
     fontSize: FontSize.md,
     color: Colors.textSecondary,
   },
   tabTextActive: {
-    color: Colors.primary,
-    fontWeight: '600',
+    color: Colors.textInverse,
+    fontWeight: '900',
   },
   totalRow: {
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.sm,
+    paddingTop: Spacing.xs,
+    alignItems: 'flex-end',
   },
   totalText: {
     color: Colors.textSecondary,
@@ -269,10 +275,10 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.surface,
     borderWidth: 1,
-    borderColor: Colors.border,
-    borderRadius: BorderRadius.lg,
-    padding: Spacing.md,
-    ...Shadow.sm,
+    borderColor: Colors.borderLight,
+    borderRadius: BorderRadius.xl,
+    padding: Spacing.lg,
+    ...Shadow.md,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -285,12 +291,12 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: FontSize.lg,
     lineHeight: 22,
-    fontWeight: '700',
+    fontWeight: '900',
   },
   statusBadge: {
-    borderRadius: BorderRadius.sm,
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 3,
+    borderRadius: BorderRadius.full,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 5,
   },
   statusText: {
     fontSize: FontSize.xs,
@@ -321,9 +327,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryBg,
     borderWidth: 1,
     borderColor: Colors.primary,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.full,
     paddingHorizontal: Spacing.md,
-    paddingVertical: 6,
+    paddingVertical: 8,
   },
   linkButtonText: {
     color: Colors.primary,

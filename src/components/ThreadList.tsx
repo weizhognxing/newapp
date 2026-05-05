@@ -899,18 +899,18 @@ const styles = StyleSheet.create({
     color: Colors.textSecondary,
   },
   listContent: {
-    padding: Spacing.lg,
+    paddingHorizontal: Spacing.lg,
     paddingTop: 0,
-    paddingBottom: 100,
+    paddingBottom: 110,
   },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     marginBottom: Spacing.md,
     borderWidth: 1,
-    borderColor: Colors.border,
-    ...Shadow.sm,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -919,13 +919,13 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   statusBadge: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 5,
+    borderRadius: BorderRadius.full,
   },
   statusText: {
     fontSize: FontSize.xs,
-    fontWeight: '600',
+    fontWeight: '900',
   },
   typeBadge: {
     backgroundColor: Colors.infoBg,
@@ -940,7 +940,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: FontSize.lg,
-    fontWeight: '600',
+    fontWeight: '900',
     color: Colors.text,
     marginBottom: Spacing.xs,
     lineHeight: 24,
@@ -984,9 +984,11 @@ const styles = StyleSheet.create({
   },
   tag: {
     backgroundColor: Colors.primaryBg,
-    borderRadius: BorderRadius.sm,
+    borderRadius: BorderRadius.full,
     paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
+    paddingVertical: 4,
+    borderWidth: 1,
+    borderColor: Colors.primarySoft,
   },
   tagText: {
     fontSize: FontSize.xs,
@@ -1003,8 +1005,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.xs,
-    borderRadius: BorderRadius.md,
+    paddingVertical: 8,
+    borderRadius: BorderRadius.full,
   },
   editButton: {
     backgroundColor: Colors.infoBg,

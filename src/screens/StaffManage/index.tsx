@@ -108,6 +108,7 @@ export default function StaffManageScreen() {
     <View style={styles.container}>
       <PageHeader
         title="人员管理"
+        subtitle="配置团队成员与协作权限"
         rightAction={{ icon: 'add-circle-outline', onPress: () => setShowAddModal(true) }}
       />
 
@@ -204,10 +205,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     marginBottom: Spacing.md,
-    ...Shadow.sm,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   cardLeft: { flexDirection: 'row', alignItems: 'center', flex: 1 },
   avatar: {
@@ -219,26 +222,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: Spacing.md,
   },
-  avatarText: { fontSize: FontSize.lg, fontWeight: '700', color: Colors.primary },
+  avatarText: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.primary },
   userInfo: { flex: 1 },
-  userName: { fontSize: FontSize.lg, fontWeight: '600', color: Colors.text },
+  userName: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.text },
   userRole: { fontSize: FontSize.sm, color: Colors.primary, marginTop: 2 },
   userMeta: { fontSize: FontSize.xs, color: Colors.textTertiary, marginTop: 2 },
   deleteBtn: { padding: Spacing.sm },
   loadingOverlay: { ...StyleSheet.absoluteFillObject, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.8)' },
   modalOverlay: { flex: 1, backgroundColor: Colors.overlay, justifyContent: 'flex-end' },
-  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xl, borderTopRightRadius: BorderRadius.xl, maxHeight: '80%' },
+  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xxl, borderTopRightRadius: BorderRadius.xxl, maxHeight: '80%' },
   modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: Spacing.lg, borderBottomWidth: 1, borderBottomColor: Colors.border },
-  modalTitle: { fontSize: FontSize.xl, fontWeight: '600', color: Colors.text },
+  modalTitle: { fontSize: FontSize.xl, fontWeight: '900', color: Colors.text },
   modalBody: { padding: Spacing.lg },
   fieldLabel: { fontSize: FontSize.md, fontWeight: '500', color: Colors.text, marginBottom: Spacing.sm, marginTop: Spacing.md },
   fieldInput: {
     backgroundColor: Colors.background,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    borderColor: Colors.border,
+    borderColor: Colors.borderLight,
     paddingHorizontal: Spacing.md,
-    height: 44,
+    height: 48,
     fontSize: FontSize.md,
     color: Colors.text,
   },
@@ -246,21 +249,21 @@ const styles = StyleSheet.create({
   roleChip: {
     flex: 1,
     paddingVertical: Spacing.md,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
     borderColor: Colors.border,
     alignItems: 'center',
   },
   roleChipActive: { borderColor: Colors.primary, backgroundColor: Colors.primaryBg },
   roleChipText: { fontSize: FontSize.md, color: Colors.textSecondary },
-  roleChipTextActive: { color: Colors.primary, fontWeight: '600' },
+  roleChipTextActive: { color: Colors.primary, fontWeight: '800' },
   submitButton: {
     backgroundColor: Colors.primary,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.full,
     paddingVertical: Spacing.md,
     alignItems: 'center',
     marginTop: Spacing.xxl,
     marginBottom: Spacing.xxxl,
   },
-  submitButtonText: { fontSize: FontSize.lg, fontWeight: '600', color: '#fff' },
+  submitButtonText: { fontSize: FontSize.lg, fontWeight: '800', color: '#fff' },
 });

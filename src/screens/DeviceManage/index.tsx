@@ -120,6 +120,7 @@ export default function DeviceManageScreen() {
     <View style={styles.container}>
       <PageHeader
         title="设备管理"
+        subtitle="掌握发布终端与设备状态"
         rightAction={{ icon: 'add-circle-outline', onPress: () => setShowAddModal(true) }}
       />
 
@@ -190,22 +191,26 @@ const styles = StyleSheet.create({
   listContent: { padding: Spacing.lg, paddingBottom: 100 },
   card: {
     backgroundColor: Colors.surface,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.xl,
     padding: Spacing.lg,
     marginBottom: Spacing.md,
-    ...Shadow.sm,
+    borderWidth: 1,
+    borderColor: Colors.borderLight,
+    ...Shadow.md,
   },
   cardHeader: { flexDirection: 'row', alignItems: 'center' },
   iconBox: {
     width: 44,
     height: 44,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.xl,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.primarySoft,
     marginRight: Spacing.md,
   },
   deviceInfo: { flex: 1 },
-  deviceName: { fontSize: FontSize.lg, fontWeight: '600', color: Colors.text },
+  deviceName: { fontSize: FontSize.lg, fontWeight: '900', color: Colors.text },
   deviceModel: { fontSize: FontSize.sm, color: Colors.textSecondary, marginTop: 2 },
   statusBadge: {
     flexDirection: 'row',
@@ -216,33 +221,33 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   statusDot: { width: 6, height: 6, borderRadius: 3 },
-  statusText: { fontSize: FontSize.xs, fontWeight: '600' },
+  statusText: { fontSize: FontSize.xs, fontWeight: '800' },
   cardMeta: { flexDirection: 'row', marginTop: Spacing.sm, paddingLeft: 56 },
   metaLabel: { fontSize: FontSize.sm, color: Colors.textTertiary, width: 70 },
   metaValue: { fontSize: FontSize.sm, color: Colors.textSecondary, flex: 1 },
   modalOverlay: { flex: 1, backgroundColor: Colors.overlay, justifyContent: 'flex-end' },
-  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xl, borderTopRightRadius: BorderRadius.xl, maxHeight: '80%' },
+  modalContent: { backgroundColor: Colors.surface, borderTopLeftRadius: BorderRadius.xxl, borderTopRightRadius: BorderRadius.xxl, maxHeight: '80%' },
   modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: Spacing.lg, borderBottomWidth: 1, borderBottomColor: Colors.border },
-  modalTitle: { fontSize: FontSize.xl, fontWeight: '600', color: Colors.text },
+  modalTitle: { fontSize: FontSize.xl, fontWeight: '900', color: Colors.text },
   modalBody: { padding: Spacing.lg },
   fieldLabel: { fontSize: FontSize.md, fontWeight: '500', color: Colors.text, marginBottom: Spacing.sm, marginTop: Spacing.md },
   fieldInput: {
     backgroundColor: Colors.background,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.lg,
     borderWidth: 1,
-    borderColor: Colors.border,
+    borderColor: Colors.borderLight,
     paddingHorizontal: Spacing.md,
-    height: 44,
+    height: 48,
     fontSize: FontSize.md,
     color: Colors.text,
   },
   submitButton: {
     backgroundColor: Colors.primary,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.full,
     paddingVertical: Spacing.md,
     alignItems: 'center',
     marginTop: Spacing.xxl,
     marginBottom: Spacing.xxxl,
   },
-  submitButtonText: { fontSize: FontSize.lg, fontWeight: '600', color: '#fff' },
+  submitButtonText: { fontSize: FontSize.lg, fontWeight: '800', color: '#fff' },
 });
