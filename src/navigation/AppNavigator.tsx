@@ -146,7 +146,7 @@ function MainTabNavigator() {
           paddingTop: 8,
           paddingBottom: 10,
           marginHorizontal: Spacing.md,
-          marginBottom: Spacing.sm,
+          marginBottom: 0,
           borderRadius: BorderRadius.xl,
           backgroundColor: 'rgba(255, 255, 255, 0.98)',
           borderTopWidth: 0,

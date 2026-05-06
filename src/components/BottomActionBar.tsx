@@ -26,7 +26,7 @@ export default function BottomActionBar({
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.wrapper, { bottom: bottomOffset + insets.bottom + 2 }]}> 
+    <View style={[styles.wrapper, { bottom: bottomOffset + insets.bottom + Spacing.sm }]}> 
       <View style={styles.card}>
         <View style={styles.summaryBlock}>
           <Text style={styles.summaryLabel}>当前进度</Text>
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: Spacing.md,
     right: Spacing.md,
-    transform: [{ translateY: 42 }],
   },
   card: {
     flexDirection: 'row',
